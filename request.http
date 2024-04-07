@@ -1,0 +1,99 @@
+### Danh sách đơn vị tiền tệ
+GET http://localhost:3456/currency HTTP/1.1
+
+### Chi tiết đơn vị tiền tệ
+GET http://localhost:3456/currency/1 HTTP/1.1
+
+### Tạo đơn vị tiền tệ
+POST http://localhost:3456/currency HTTP/1.1
+content-type: application/json
+
+{
+  "shortName": "VND",
+  "name": "VND",
+  "symbol": "₫"
+}
+
+### Danh sách khách hàng
+GET http://localhost:3456/customer HTTP/1.1
+
+### Chi tiết khách hàng
+GET http://localhost:3456/customer/1 HTTP/1.1
+
+### Tạo mới khách hàng
+POST http://localhost:3456/customer HTTP/1.1
+content-type: application/json
+
+{
+  "fullName": "Customer Full Name",
+  "email": "customer@gmail.com",
+  "phone": "0912345678",
+  "username": "0912345678",
+  "password": "123456"
+}
+
+### Danh sách loại tài khoản
+GET http://localhost:3456/account/type HTTP/1.1
+
+### Chi tiết loại tài khoản
+GET http://localhost:3456/account/type/1 HTTP/1.1
+
+### Chi tiết tài khoản
+GET http://localhost:3456/account/1 HTTP/1.1
+
+### Số dư tài khoản
+GET http://localhost:3456/account/1/balance HTTP/1.1
+
+### Tạo mới loại tài khoản
+POST http://localhost:3456/account/type HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Debit",
+}
+
+### Tạo mới tài khoản
+POST http://localhost:3456/account HTTP/1.1
+content-type: application/json
+
+{
+  "customerId": 2,
+  "currencyId": 1,
+  "accountTypeId": 1,
+  "balance": 100000000
+}
+
+### Danh sách loại giao dịch
+GET http://localhost:3456/transaction/type
+
+### Chi tiết loại giao dịch
+GET http://localhost:3456/transaction/type/1
+
+### Tạo mới loại giao dịch
+POST http://localhost:3456/transaction/type HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Thanh toán dịch vụ"
+}
+
+### Chi tiết giao dịch
+GET http://localhost:3456/transaction/10 HTTP/1.1
+
+### Danh sách giao dịch theo tài khoản
+GET http://localhost:3456/transaction/account/1/type/remitter HTTP/1.1
+# recipient | remitter
+
+### Tạo mới giao dịch (chuyển tiền)
+POST http://localhost:3456/transaction HTTP/1.1
+content-type: application/json
+
+{
+  "transactionTypeId": 1,
+  "customerId": 1,
+  "remitterAccountId": 1,
+  "recipientAccountId": 2,
+  "currencyId": 1,
+  "amount": 5000000,
+  "content": "Transfer content"
+}
